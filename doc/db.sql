@@ -355,3 +355,18 @@ CREATE INDEX IDX_QRTZ_FT_J_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,JOB_NAME,JOB_GROU
 CREATE INDEX IDX_QRTZ_FT_JG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,JOB_GROUP);
 CREATE INDEX IDX_QRTZ_FT_T_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP);
 CREATE INDEX IDX_QRTZ_FT_TG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_GROUP);
+
+
+
+
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('32', '31', '查看', NULL, 'sys:test:list,sys:test:info', '2', NULL, '0');
+
+-- 测试
+CREATE TABLE `sys_test` (
+  `test_id` bigint NOT NULL AUTO_INCREMENT,
+  `test_name` varchar(100) COMMENT '测试名称',
+  `remark` varchar(100) COMMENT '备注',
+  PRIMARY KEY (`test_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试';
+
+INSERT INTO `sys_test` (`test_id`, `test_name`, `remark`, `salt`) VALUES ('1', '刘宁', '测试案例');
