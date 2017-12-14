@@ -48,13 +48,13 @@ var vm = new Vue({
         query: function () {
             vm.reload();
         },
-        /*add: function(){
+       add: function(){
             vm.showList = false;
-            vm.title = "新增";
-            vm.role = {};
+            vm.title = "测试新增";
+            vm.test = {};
             vm.getMenuTree(null);
         },
-        update: function () {
+         update: function () {
             var roleId = getSelectedRow();
             if(roleId == null){
                 return ;
@@ -111,9 +111,9 @@ var vm = new Vue({
             for(var i=0; i<nodes.length; i++) {
                 menuIdList.push(nodes[i].menuId);
             }
-            vm.role.menuIdList = menuIdList;
+            vm.test.menuIdList = menuIdList;
 
-            var url = vm.role.roleId == null ? "sys/role/save" : "sys/role/update";
+            var url = vm.test.testId == null ? "sys/test/save" : "sys/test/update";
             $.ajax({
                 type: "POST",
                 url: baseURL + url,
@@ -141,7 +141,7 @@ var vm = new Vue({
                     vm.getRole(roleId);
                 }
             });
-        },*/
+        },
         reload: function () {
             vm.showList = true;
             /*获取一个参数的方法*/
