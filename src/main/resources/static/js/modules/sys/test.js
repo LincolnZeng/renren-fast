@@ -34,11 +34,30 @@ $(function () {
     });
 });
 
+var setting = {
+    data: {
+        simpleData: {
+            enable: true,
+            idKey: "menuId",
+            pIdKey: "parentId",
+            rootPId: -1
+        },
+        key: {
+            url:"nourl"
+        }
+    },
+    check:{
+        enable:true,
+        nocheckInherit:true
+    }
+};
+var ztree;
+
 var vm = new Vue({
     el:'#rrapp',
     data:{
         q:{
-            roleName: null
+            testName: null
         },
         showList: true,
         title:null,
@@ -88,7 +107,7 @@ var vm = new Vue({
                 });
             });
         },
-        getRole: function(roleId){
+        getTest: function(testId){
             $.get(baseURL + "sys/role/info/"+roleId, function(r){
                 vm.role = r.role;
 
@@ -118,7 +137,7 @@ var vm = new Vue({
                 type: "POST",
                 url: baseURL + url,
                 contentType: "application/json",
-                data: JSON.stringify(vm.role),
+                data: JSON.stringify(vm.test),
                 success: function(r){
                     if(r.code === 0){
                         alert('操作成功', function(){
@@ -130,15 +149,15 @@ var vm = new Vue({
                 }
             });
         },
-        getMenuTree: function(roleId) {
+        getMenuTree: function(testId) {
             //加载菜单树
             $.get(baseURL + "sys/menu/list", function(r){
                 ztree = $.fn.zTree.init($("#menuTree"), setting, r);
                 //展开所有节点
                 ztree.expandAll(true);
 
-                if(roleId != null){
-                    vm.getRole(roleId);
+                if(testId != null){
+                    vm.getTest(testId);
                 }
             });
         },
@@ -150,12 +169,12 @@ var vm = new Vue({
                 postData:{'testName': vm.q.testName},
                 page:page
             }).trigger("reloadGrid");
-        }
-        /*validator: function () {
-            if(isBlank(vm.role.roleName)){
-                alert("角色名不能为空");
+        },
+        validator: function () {
+            if(isBlank(vm.test.testName)){
+                alert("测试名不能为空");
                 return true;
             }
-        }*/
+        }
     }
 });
