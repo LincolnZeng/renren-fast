@@ -45,9 +45,9 @@ var vm = new Vue({
         test:{}
     },
     methods: {
-        /*query: function () {
+        query: function () {
             vm.reload();
-        },*/
+        },
         /*add: function(){
             vm.showList = false;
             vm.title = "新增";
@@ -144,6 +144,7 @@ var vm = new Vue({
         },*/
         reload: function () {
             vm.showList = true;
+            /*获取一个参数的方法*/
             var page = $("#jqGrid").jqGrid('getGridParam','page');
             $("#jqGrid").jqGrid('setGridParam',{
                 postData:{'testName': vm.q.testName},
