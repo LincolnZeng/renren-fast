@@ -26,6 +26,19 @@ public class SysTestEntity implements Serializable {
      */
     private String remark;
 
+    /**
+     * 创建者ID
+     */
+    private Long createUserId;
+
+    public Long getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(Long createUserId) {
+        this.createUserId = createUserId;
+    }
+
     public Long getTestId() {
         return testId;
     }

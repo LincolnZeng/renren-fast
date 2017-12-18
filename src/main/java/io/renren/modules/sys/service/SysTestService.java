@@ -24,4 +24,12 @@ public interface SysTestService {
      * @return
      */
     int queryTotal(Map<String, Object> map);
+
+    void save(SysTestEntity sysTestEntity);
+
+    void update(SysTestEntity sysTestEntity);
+
+    void deleteBatch(Long[] testIds);
+
+    SysTestEntity queryObject(Long testId);
 }

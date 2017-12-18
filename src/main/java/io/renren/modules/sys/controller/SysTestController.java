@@ -1,17 +1,17 @@
 package io.renren.modules.sys.controller;
 
+import io.renren.common.annotation.SysLog;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
+import io.renren.common.validator.ValidatorUtils;
 import io.renren.modules.sys.entity.SysRoleEntity;
 import io.renren.modules.sys.entity.SysTestEntity;
 import io.renren.modules.sys.service.SysTestService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -46,5 +46,56 @@ public class SysTestController extends AbstractController{
         PageUtils pageUtil = new PageUtils(list, total, query.getLimit(), query.getPage());
 
         return R.ok().put("page", pageUtil);
+    }
+
+    /**
+     * 保存测试角色
+     */
+    @SysLog("保存测试角色")
+    @RequestMapping("/save")
+    @RequiresPermissions("sys:test:save")
+    public R save(@RequestBody SysTestEntity test){
+        ValidatorUtils.validateEntity(test);
+
+        test.setCreateUserId(getUserId());
+        sysTestService.save(test);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改测试内容
+     * @param testEntity
+     * @return
+     */
+    public R update(@RequestBody SysTestEntity testEntity){
+        ValidatorUtils.validateEntity(testEntity);
+        testEntity.setCreateUserId(getUserId());
+        sysTestService.update(testEntity);
+
+        return R.ok();
+    }
+
+    /**
+     * 删除测试角色
+     */
+    @SysLog("删除测试角色")
+    @RequestMapping("/delete")
+    @RequiresPermissions("sys:test:delete")
+    public R delete(@RequestBody Long[] testIds){
+        sysTestService.deleteBatch(testIds);
+
+        return R.ok();
+    }
+
+    /**
+     * 测试信息
+     */
+    @RequestMapping("/info/{testId}")
+    @RequiresPermissions("sys:test:info")
+    public R info(@PathVariable("testId") Long roleId){
+        SysTestEntity test = sysTestService.queryObject(roleId);
+
+        return R.ok().put("test", test);
     }
 }

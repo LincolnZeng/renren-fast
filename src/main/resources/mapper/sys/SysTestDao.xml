@@ -39,5 +39,40 @@
         </where>
     </select>
 
+    <insert id="save" parameterType="io.renren.modules.sys.entity.SysTestEntity" useGeneratedKeys="true" keyProperty="testId">
+        insert into sys_test
+        (
+        `test_id`,
+        `test_name`,
+        `remark`
+        )
+        values
+        (
+        #{testId},
+        #{testName},
+        #{remark}
+        )
+    </insert>
+
+    <update id="update" parameterType="io.renren.modules.sys.entity.SysTestEntity">
+        update sys_test
+        <set>
+            <if test="testName != null">`test_name` = #{testName}, </if>
+            <if test="remark != null">`remark` = #{remark}</if>
+        </set>
+        where test_id = #{testId}
+    </update>
+
+    <delete id="deleteBatch">
+        delete from sys_test where test_id in
+        <foreach item="testId" collection="array" open="(" separator="," close=")">
+            #{testId}
+        </foreach>
+
+    </delete>
+
+    <select id="queryObject" resultType="io.renren.modules.sys.entity.SysTestEntity">
+        select * from sys_test where test_id = #{value}
+    </select>
 
 </mapper>

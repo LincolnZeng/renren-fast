@@ -74,27 +74,27 @@ var vm = new Vue({
             vm.getMenuTree(null);
         },
          update: function () {
-            var roleId = getSelectedRow();
-            if(roleId == null){
+            var testId = getSelectedRow();
+            if(testId == null){
                 return ;
             }
 
             vm.showList = false;
-            vm.title = "修改";
-            vm.getMenuTree(roleId);
+            vm.title = "测试修改";
+            vm.getMenuTree(testId);
         },
         del: function () {
-            var roleIds = getSelectedRows();
-            if(roleIds == null){
+            var testIds = getSelectedRows();
+            if(testIds == null){
                 return ;
             }
 
             confirm('确定要删除选中的记录？', function(){
                 $.ajax({
                     type: "POST",
-                    url: baseURL + "sys/role/delete",
+                    url: baseURL + "sys/test/delete",
                     contentType: "application/json",
-                    data: JSON.stringify(roleIds),
+                    data: JSON.stringify(testIds),
                     success: function(r){
                         if(r.code == 0){
                             alert('操作成功', function(index){
@@ -108,11 +108,11 @@ var vm = new Vue({
             });
         },
         getTest: function(testId){
-            $.get(baseURL + "sys/role/info/"+roleId, function(r){
-                vm.role = r.role;
+            $.get(baseURL + "sys/test/info/"+testId, function(r){
+                vm.test = r.test;
 
                 //勾选角色所拥有的菜单
-                var menuIds = vm.role.menuIdList;
+                var menuIds = vm.test.menuIdList;
                 for(var i=0; i<menuIds.length; i++) {
                     var node = ztree.getNodeByParam("menuId", menuIds[i]);
                     ztree.checkNode(node, true, false);

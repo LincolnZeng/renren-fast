@@ -5,6 +5,7 @@ import io.renren.modules.sys.entity.SysTestEntity;
 import io.renren.modules.sys.service.SysTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -35,5 +36,42 @@ public class SysTestServiceImpl implements SysTestService {
     @Override
     public int queryTotal(Map<String, Object> map) {
         return sysTestDao.queryTotal(map);
+    }
+
+    /**
+     * 新增测试
+     * @param sysTestEntity
+     */
+    @Override
+    @Transactional
+    public void save(SysTestEntity sysTestEntity) {
+        sysTestDao.save(sysTestEntity);
+    }
+
+    /**
+     * 测试修改方法
+     * @param sysTestEntity
+     */
+    @Override
+    @Transactional
+    public void update(SysTestEntity sysTestEntity) {
+        sysTestDao.update(sysTestEntity);
+    }
+
+
+    /**
+     * 批处理删除
+     * @param testIds
+     */
+    @Override
+    @Transactional
+    public void deleteBatch(Long[] testIds) {
+        sysTestDao.deleteBatch(testIds);
+    }
+
+
+    @Override
+    public SysTestEntity queryObject(Long testId) {
+        return sysTestDao.queryObject(testId);
     }
 }

@@ -67,7 +67,7 @@ public class SysLoginController extends AbstractController {
 		//如果想把页面单独放到nginx里，实现前后端完全分离，则需要把验证码注释掉(因为不再依赖session了)
 		String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
 		if(!captcha.equalsIgnoreCase(kaptcha)){
-			return R.error("验证码不正确");
+			return R.error("验证码不正确1111");
 		}
 
 		//用户信息
