@@ -377,3 +377,5 @@ CREATE TABLE `sys_test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试';
 
 INSERT INTO `sys_test` (`test_id`, `test_name`, `remark`) VALUES ('1', '刘宁', '测试案例');
+
+alter table `sys_test` add createUserId bigint COMMENT '创建者名称'

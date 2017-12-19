@@ -44,13 +44,15 @@
         (
         `test_id`,
         `test_name`,
-        `remark`
+        `remark`,
+        `createUserId`
         )
         values
         (
         #{testId},
         #{testName},
-        #{remark}
+        #{remark},
+        #{createUserId}
         )
     </insert>
 

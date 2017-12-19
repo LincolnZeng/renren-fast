@@ -68,6 +68,9 @@ public class SysTestController extends AbstractController{
      * @param testEntity
      * @return
      */
+    @SysLog("修改测试角色")
+    @RequestMapping("/update")
+    @RequiresPermissions("sys:test:update")
     public R update(@RequestBody SysTestEntity testEntity){
         ValidatorUtils.validateEntity(testEntity);
         testEntity.setCreateUserId(getUserId());
