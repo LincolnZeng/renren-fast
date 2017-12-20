@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +20,14 @@ import java.util.Map;
 @Configuration
 public class DynamicDataSourceConfig {
 
+    //读取数据源一的配置信息
     @Bean
     @ConfigurationProperties("spring.datasource.druid.first")
     public DataSource firstDataSource(){
         return DruidDataSourceBuilder.create().build();
     }
 
+    //读取数据源二的配置信息
     @Bean
     @ConfigurationProperties("spring.datasource.druid.second")
     public DataSource secondDataSource(){

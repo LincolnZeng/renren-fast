@@ -16,6 +16,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
     public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
+        //设置默认数据源
         super.setDefaultTargetDataSource(defaultTargetDataSource);
         super.setTargetDataSources(new HashMap<>(targetDataSources));
         super.afterPropertiesSet();
@@ -31,6 +32,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     }
 
     public static String getDataSource() {
+        //该方法返回当前线程所对应的线程局部变量。
         return contextHolder.get();
     }
 
