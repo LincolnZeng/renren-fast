@@ -239,6 +239,29 @@
 				</configuration>
 				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
 			</plugin>
+			<!--打包jar包时使用-->
+			<plugin>
+				<artifactId> maven-assembly-plugin </artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>io.renren.RenrenApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
