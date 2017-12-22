@@ -30,6 +30,7 @@ public class ShiroConfig {
 
     @Bean("sessionManager")
     public SessionManager sessionManager(){
+        //shiro自己管理会话
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionIdCookieEnabled(true);
