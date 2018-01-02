@@ -34,6 +34,10 @@ public class DynamicDataSourceConfig {
         return DruidDataSourceBuilder.create().build();
     }
 
+    //加了@Primary注解，表示指定DynamicDataSource为Spring的数据源
+    //因为DynamicDataSource是继承与AbstractRoutingDataSource，而AbstractR
+    //outingDataSource又是继承于AbstractDataSource，AbstractDataSource实现了统一
+    //的DataSource接口，所以DynamicDataSource也可以当做DataSource使用
     @Bean
     @Primary
     public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) {
