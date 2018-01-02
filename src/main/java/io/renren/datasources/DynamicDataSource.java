@@ -13,6 +13,8 @@ import java.util.Map;
  * @date 2017/8/19 1:03
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
+
+    //最常见的ThreadLocal使用场景为 用来解决数据库连接、Session管理等
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
     public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
@@ -24,6 +26,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
+        //获取数据源，没有指定，则为默认数据源
         return getDataSource();
     }
 
