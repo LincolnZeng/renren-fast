@@ -356,7 +356,7 @@ CREATE INDEX IDX_QRTZ_FT_JG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,JOB_GROUP);
 CREATE INDEX IDX_QRTZ_FT_T_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP);
 CREATE INDEX IDX_QRTZ_FT_TG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_GROUP);
 
-
+--添加测试管理
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('31', '1', '测试管理', 'modules/sys/test.html', NULL, '1', 'fa fa-user', '8');
 
 
@@ -368,7 +368,7 @@ INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, 
 
 
 
--- 测试
+-- 测试  测试用户- 刘宁 ，密码123456
 CREATE TABLE `sys_test` (
   `test_id` bigint NOT NULL AUTO_INCREMENT,
   `test_name` varchar(100) COMMENT '测试名称',
@@ -377,5 +377,5 @@ CREATE TABLE `sys_test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试';
 
 INSERT INTO `sys_test` (`test_id`, `test_name`, `remark`) VALUES ('1', '刘宁', '测试案例');
-
+--新增管理者字段
 alter table `sys_test` add createUserId bigint COMMENT '创建者名称'

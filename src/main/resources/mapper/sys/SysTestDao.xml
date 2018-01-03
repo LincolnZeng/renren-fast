@@ -11,7 +11,7 @@
                 and `test_name` like concat('%',#{testName},'%')
             </if>
             <if test="createUserId != null">
-                and create_user_id = #{createUserId}
+                and createUserId = #{createUserId}
             </if>
         </where>
         <choose>
@@ -34,7 +34,7 @@
                 and `test_name` like concat('%',#{testName},'%')
             </if>
             <if test="createUserId != null">
-                and create_user_id = #{createUserId}
+                and createUserId = #{createUserId}
             </if>
         </where>
     </select>
