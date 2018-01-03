@@ -39,6 +39,7 @@ public class SysTestController extends AbstractController{
         }
 
         //查询列表数据
+        //处理sql注入
         Query query = new Query(params);
         List<SysTestEntity> list = sysTestService.queryList(query);
         int total = sysTestService.queryTotal(query);

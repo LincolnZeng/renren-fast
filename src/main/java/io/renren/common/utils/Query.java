@@ -39,7 +39,6 @@ public class Query extends LinkedHashMap<String, Object> {
         if(StringUtils.isNotBlank(order)){
             this.put("order", SQLFilter.sqlInject(order));
         }
-
     }
 
 
