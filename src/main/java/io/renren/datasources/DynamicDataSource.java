@@ -15,6 +15,7 @@ import java.util.Map;
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
     //最常见的ThreadLocal使用场景为 用来解决数据库连接、Session管理等
+
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
     public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
